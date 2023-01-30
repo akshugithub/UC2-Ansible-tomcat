@@ -4,9 +4,9 @@ pipeline {
     }
 
     stages {
-        stage('scm') {
-            steps {
-               git '<SCM>'
+      stage('GIT checkout') {
+           steps {
+                git branch: 'main', url: 'https://github.com/akshugithub/UC2-Ansible-tomcat.git'
             }
         }
 		stage('build') {
