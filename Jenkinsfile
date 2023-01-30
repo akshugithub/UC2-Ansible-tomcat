@@ -1,7 +1,9 @@
 pipeline {
-    agent {
-    label ('ansible')
-    }
+    agent any
+    tools { 
+        maven 'maven' 
+        
+           }
 
     stages {
       stage('GIT checkout') {
