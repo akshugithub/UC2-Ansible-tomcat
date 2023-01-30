@@ -18,7 +18,8 @@ pipeline {
         }
 		stage('deploy') {
             steps {
-               sh 'ansible-playbook tomcat_deploy.yaml'
+               //sh 'ansible-playbook tomcat_deploy.yaml'
+	       ansiblePlaybook credentialsId: 'tomcat-creds', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'	    
             }
         }
     }
