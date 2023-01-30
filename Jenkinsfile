@@ -19,7 +19,8 @@ pipeline {
 		stage('deploy') {
             steps {
                //sh 'ansible-playbook tomcat_deploy.yaml'
-	       ansiblePlaybook disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'	    
+	       //ansiblePlaybook disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'
+	       ansiblePlaybook credentialsId: 'tomcat-creds', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'	    
             }
         }
     }
