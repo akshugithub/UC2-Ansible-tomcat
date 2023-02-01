@@ -24,7 +24,13 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.host.url>http://65.0.6.32:9000/</sonar.host.url>
+        <sonar.organization>akshugithub</sonar.organization>
+    </properties>
+    
   <build>
     <plugins>
       <!-- Enable building as a .war file with `mvn package` -->
@@ -33,7 +39,6 @@
         <version>3.3.1</version>
       </plugin>
     </plugins>
-
     <!-- The output .war file's name, which will be the name of the webapp. -->
     <finalName>${project.artifactId}</finalName>
   </build>
