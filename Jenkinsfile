@@ -11,6 +11,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/akshugithub/UC2-Ansible-tomcat.git'
             }
         }
+	    stage('SonarQube analysis') {
+            steps{
+                 withSonarQubeEnv('uc2-sonarqube') { 
+                 sh "mvn sonar:sonar"
+	}
+		}
+		}
 		stage('build') {
             steps {
                sh 'mvn clean package'
@@ -23,12 +30,6 @@ pipeline {
 	       ansiblePlaybook credentialsId: 'tomcat-creds', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'	    
             }
         }
-	         stage('SonarQube analysis') {
-            steps{
-                 withSonarQubeEnv('uc2-sonarqube') { 
-                 sh "mvn sonar:sonar"
-	}
-		}
-		}
+	         
     }
 }
