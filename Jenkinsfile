@@ -23,5 +23,12 @@ pipeline {
 	       ansiblePlaybook credentialsId: 'tomcat-creds', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'	    
             }
         }
+	         stage('SonarQube analysis') {
+            steps{
+                 withSonarQubeEnv('ec2-sonarqube') { 
+                 sh "mvn sonar:sonar"
+	}
+		}
+		}
     }
 }
