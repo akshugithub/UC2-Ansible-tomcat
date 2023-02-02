@@ -19,7 +19,7 @@ pipeline {
         }
 	     stage('SonarQube analysis') {
             steps{
-                 withSonarQubeEnv('uc2-sonarqube') { 
+                 withSonarQubeEnv('uc2-sonar') { 
                  sh "mvn sonar:sonar"
 	}
 		}
