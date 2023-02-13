@@ -12,25 +12,25 @@ pipeline {
             }
         }
 	   
-		stage('build') {
-            steps {
-               sh 'mvn clean package'
-            }
-        }
-	     stage('SonarQube analysis') {
-            steps{
-                 withSonarQubeEnv('uc2-sonar') { 
-                 sh "mvn sonar:sonar"
-	}
-		}
-		}
-		stage('deploy') {
-            steps {
+	//	stage('build') {
+          //  steps {
+            //   sh 'mvn clean package'
+           // }
+        // }
+	    // stage('SonarQube analysis') {
+            //steps{
+              //   withSonarQubeEnv('uc2-sonar') { 
+                // sh "mvn sonar:sonar"
+	//}
+	//	}
+	//	}
+	//	stage('deploy') {
+          //  steps {
                //sh 'ansible-playbook tomcat_deploy.yaml'
 	       //ansiblePlaybook disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'
-	       ansiblePlaybook credentialsId: 'tomcat-creds', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'	    
-            }
-        }
+	    //   ansiblePlaybook credentialsId: 'tomcat-creds', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory.yaml', playbook: 'tomcat_deploy.yaml'	    
+            //}
+        //}
 	         
     }
 }
