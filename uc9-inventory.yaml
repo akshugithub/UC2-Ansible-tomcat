@@ -1,1 +1,2 @@
-localhost ansible_user=ec2-user
+localhost ansible_connections=local
+localhost ansible_python_interpreter="/usr/bin/python3"
