@@ -17,7 +17,7 @@
        group_id: io.happycoding
        artifact_id: hello-world-maven
        extension: war
-       version: '{{ version }}' 
+       version: 3.0-SNAPSHOT 
        repository_url: "http://3.111.149.223:8081/repository/maven-snapshots/"
        username: admin
        password: nexusrepos
