@@ -17,14 +17,14 @@
        group_id: io.happycoding
        artifact_id: hello-world-maven
        extension: war
-       version: 3.0-SNAPSHOT 
+       version: 4.0-SNAPSHOT 
        repository_url: "http://3.111.149.223:8081/repository/maven-snapshots/"
        username: admin
        password: nexusrepos
        dest: "/tmp/hello-world-maven.war"
        mode: '0644'
 
-    - name: Donwload tomcat packages
+    - name: Download tomcat packages
       get_url:
        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
        dest: /usr/local
