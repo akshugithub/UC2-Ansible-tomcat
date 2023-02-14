@@ -29,24 +29,24 @@
 
     - name: extract tomcat packages
       unarchive:
-       src: /usr/local/apache-tomcat-10.0.27.tar.gz
+       src: /usr/local/apache-tomcat-9.0.71.tar.gz
        dest: /usr/local
        remote_src: yes
 
     - name: Copy the war file
       copy:
        src: /tmp/hello-world-maven.war
-       dest: /usr/local/apache-tomcat-10.0.27/webapps/
+       dest: /usr/local/apache-tomcat-9.0.71/webapps/
        remote_src: yes
        
     - name: changing tomcat port number
       template:
        src: /var/lib/jenkins/workspace/UC9-Job/server.xml.jinja2
-       dest: /usr/local/apache-tomcat-10.0.27/conf/server.xml
+       dest: /usr/local/apache-tomcat-9.0.71/conf/server.xml
        mode: '0777'   
 
     - name: Stop tomcat services
-      shell: /usr/local/apache-tomcat-10.0.27/bin/shutdown.sh
+      shell: /usr/local/apache-tomcat-9.0.71/bin/shutdown.sh
 
     - name: Start Tomcat
-      shell: nohup /usr/local/apache-tomcat-10.0.27/bin/startup.sh
+      shell: nohup /usr/local/apache-tomcat-9.0.71/bin/startup.sh
