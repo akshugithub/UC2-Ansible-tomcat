@@ -7,10 +7,10 @@
     - name: Install lxml
       pip: name=lxml
      
-    - name: remove war file from temp dir
-      ansible.builtin.file:
-       path: /tmp/hello-world-maven.war
-       state: absent
+    # - name: remove war file from temp dir
+     # ansible.builtin.file:
+     #  path: /tmp/hello-world-maven.war
+     #  state: absent
   
     - name: "Pull war file from Nexus repository"
       maven_artifact:
