@@ -1,8 +1,6 @@
-- name: Pull artifact from Nexus and deploy over tomcat server
-  hosts: localhost
-  connection: local
-  become: true
-  become_user: root
+---
+- hosts: localhost
+  gather_facts: no
 
   tasks:
   
