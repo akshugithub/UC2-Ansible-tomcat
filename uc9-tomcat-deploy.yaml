@@ -1,15 +1,9 @@
-- name: Downloading war file from Nexus and also installing tomcat and deploy the war file.
+- name: Pull artifact from Nexus and deploy over tomcat server
   hosts: localhost
   connection: local
   become: true
   become_user: root
-#  vars_files:
-#    - secrets.yml
 
-  tasks:
-    - name: Deploy java war into Apache tomcat server
-      import_role:
-        name: ansible_tomcat_roles
   tasks:
   
     - name: Install lxml
@@ -17,30 +11,20 @@
       
     - name: remove war file from temp folder
       shell: rm -rf /tmp/hello-world-maven.war
-      
-  #  - name: Copy the secrets file
-  #    copy:
-  #     src: secrets.yml
-  #     dest: /home/ec2-user/
   
-    - name: "Download war file from Nexus"
+    - name: "Pull war file from Nexus repository"
       maven_artifact:
        group_id: io.happycoding
        artifact_id: hello-world-maven
        extension: war
        version: '{{ version }}' 
-       repository_url: "http://18.181.205.133:8081/repository/maven-test-repo/"
+       repository_url: "http://3.111.149.223:8081/repository/maven-snapshots/"
        username: admin
-       password: admin123
-     #  username: '{{ username }}'
-     #  password: '{{ password }}'
+       password: nexusrepos
        dest: "/tmp/hello-world-maven.war"
        mode: '0644'
 
-  #  - name: Execute the command in remote shell; stdout goes to the specified file on the remote
-  #    ansible.builtin.shell: amazon-linux-extras install java-openjdk11 -y
-
-    - name: download tomcat server packages
+    - name: Donwload tomcat packages
       get_url:
        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
        dest: /usr/local
@@ -59,7 +43,7 @@
        
     - name: changing tomcat port number
       template:
-       src: /var/lib/jenkins/workspace/FirstPipeline/server.xml.jinja2
+       src: /var/lib/jenkins/workspace/UC9-Job/server.xml.jinja2
        dest: /usr/local/apache-tomcat-10.0.27/conf/server.xml
        mode: '0777'   
 
