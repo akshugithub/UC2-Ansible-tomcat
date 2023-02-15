@@ -1,7 +1,0 @@
----
-- hosts: all
- # remote_user: ec2-user
-  tasks:
-   - name: Ping all the servers
-     ping:
-...
