@@ -1,4 +1,4 @@
 # localhost ansible_connections=local
 # localhost ansible_python_interpreter="/usr/bin/python"
 [tomcat]
-172.31.33.60 ansible_ssh_user= ansible
+172.31.33.60 ansible_user= ansible
