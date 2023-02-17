@@ -8,6 +8,9 @@
   
     - name: Install lxml
       pip: name=lxml
+      
+    - name: remove war file from temp folder
+      shell: rm -rf /tmp/hello-world-maven.war
      
     # - name: remove war file from temp dir
      # ansible.builtin.file:
