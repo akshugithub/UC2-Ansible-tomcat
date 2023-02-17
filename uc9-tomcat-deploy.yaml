@@ -20,7 +20,7 @@
        artifact_id: hello-world-maven
        extension: war
        version: '{{ version }}'
-       repository_url: "http://3.111.149.223:8081/repository/maven-snapshots/"
+       repository_url: "http://3.111.149.223:8081/repository/UC9-Repository/"
        username: admin
        password: nexusrepos
        dest: "/tmp/hello-world-maven.war"
