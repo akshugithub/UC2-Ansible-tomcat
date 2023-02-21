@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    tools { 
+        maven 'maven' 
+        
+           }
+
+    stages {
+      stage('GIT checkout') {
+           steps {
+                git branch: 'main', url: 'https://github.com/akshugithub/UC2-UC9-Ansible-tomcat.git'
+            }
+        }
+	   
+		stage('build') {
+            steps {
+               sh 'mvn clean package'
+            }
+        }
+        stage('push artifacts to nexus'){
+             steps{
+                 nexusArtifactUploader artifacts: [[artifactId: 'hello-world-maven', classifier: '', file: 'target/hello-world-maven.war', type: 'war']], credentialsId: 'uc9-nexus', groupId: 'io.happycoding', nexusUrl: '3.111.149.223:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'UC9-Repository', version: '1.0-SNAPSHOT'
+             }
+        }
+    }
+}    
