@@ -1,0 +1,30 @@
+node { 
+ properties([parameters([string(description: 'version to deploy', name: 'versiondeploy')])])
+
+
+      stage('GIT checkout') {
+           
+                git branch: 'main', url: 'https://github.com/akshugithub/UC2-UC9-Ansible-tomcat.git'
+        }
+	   
+		stage('build') {
+            
+               sh 'mvn clean package'
+        }
+
+
+stage('deploy') {
+        sh 'echo "${versiondeploy}"'
+        script {
+  try {
+     //sh "ansiblePlaybook credentialsId: 'ansible', installation: 'ansible', inventory: 'uc9-inventory', playbook: 'uc9-tomcat-deploy.yaml', '-e version='${versiondeploy}''"
+      sh "ansible-playbook -i uc9-inventory uc9-tomcat-deploy.yaml -e version='${versiondeploy}'"
+  } catch (err) {
+      echo "caught: ${err}"
+      echo "no stacktraces"
+      currentBuild.result='FAILURE'
+      
+  }
+}
+    }  
+}
